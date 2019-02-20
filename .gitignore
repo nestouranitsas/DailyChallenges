@@ -1,0 +1,30 @@
+# Misc. #
+#########
+notes.txt
+
+# Packages #
+############
+# commit these as raw source 
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Compiled source #
+###################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Logs and Databases #
+######################
+*.log
+*.sql
+*.sqlite3
