@@ -17,14 +17,14 @@ public class StringReverse {
         //loop to add last character to reverse until i = 0 (first index);
         for (int i = 1; i <= split.length; ++i)
         {
-            reverse = reverse + split[split.length-i];
+            reverse += split[split.length-i];
         }
         return reverse;
     }
     public static void main (String[] args)
     {
         StringReverse myReverser = new StringReverse();
-        String str = "Ball Sack";
+        String str = "Titty Smacker";
         System.out.println("Your String Forward is: " + str);
         System.out.println("Your String Backwards is: " + myReverser.reverseAndPrint(str));
     }
