@@ -6,11 +6,11 @@ import java.util.Arrays;
 
 class CardValidator
 {
-    public void validateCard(String cardNum)
-    {
+    public Boolean validateCard(String cardNum)
+    {       
         //get the last digit as checksum as int
         String checkSumStr = cardNum.substring(cardNum.length()-1, cardNum.length());
-
+   
         //Convert the checksum str to int
         int checkSumInt = Integer.valueOf(checkSumStr);
 
@@ -50,12 +50,13 @@ class CardValidator
             }
         }
 
-        //adds all numbers in array
+        //adds all numbers in revInt array
         int sum = 0;
-        for (int i : revInt)
+        for (int i = 0; i < revInt.length-1; ++i)
         {
             sum += i;
         }
+        System.out.println(sum);
 
         Boolean isValid;
         //checks modulo 10 of sum against checksum if equal isvalid is true, else fasle
@@ -67,21 +68,22 @@ class CardValidator
         {
             isValid = false;
         }
-        
-        if (isValid = true)
-        {
-            System.out.println("Card Number: " + cardNum + " is a valid credit card number.");
-        }
-        else 
-        {
-            System.out.println("Card Number: " + cardNum + " is an invalid credit card number.");
-        }
+        System.out.println(isValid);
+        return isValid;
     }
 
     public static void main (String[] args)
     {
         CardValidator myValidator = new CardValidator();
-        String cardNum = "4556737586899855";
+        String cardNum = "4024007163401591727";
         myValidator.validateCard(cardNum);
+        if (myValidator.validateCard(cardNum) == true)
+        {
+            System.out.println("Card Number: " + cardNum + " is a VALID credit card number.");
+        }
+        else 
+        {
+            System.out.println("Card Number: " + cardNum + " is an INVALID credit card number.");
+        }
     }
 }
