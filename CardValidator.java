@@ -14,24 +14,47 @@ class CardValidator
         //Convert the checksum str to int
         int checkSumInt = Integer.valueOf(checkSumStr);
 
-        //reverse the string
+        //reverses the string and drops the first digit (previously last digit)
         char[] split = cardNum.toCharArray();
         String reverse = "";
-        for (int i = 1; i <= split.length-1; ++i)
+        for (int i = 2; i <= split.length; ++i)
         {
-            reverse = reverse + split[split.length-i];
+            reverse += split[split.length-i];
         }
 
-        //convert char array to int array
-        int[] revSplit = reverse.length;
-        for (char i : reverse)
+        //convert reverse string into char array
+        char[] revChar = reverse.toCharArray();
+
+        //convert char array into int array
+        int[] revInt = new int[revChar.length];
+        for (int j = 0; j < revChar.length; j++)
         {
-            revSplit = Integer.parseInt(String.valueOf(reverse));
+            revInt[j] = (int)revChar[j] - '0';
         }
-        //for (int c : revSplit)
+        System.out.println(Arrays.toString(revInt));
+
+        //doubles ODD digits
+        for (int i = 0; i < revInt.length; i++)
         {
-        //    intArr Character.getNumericValue(c);
+            if (revInt[i]%2 == 1)
+            {
+                revInt[i] = revInt[i]*2;
+            }
         }
+        System.out.println(Arrays.toString(revInt));
+
+        
+
+        //adds all numbers in array
+        int sum = 0;
+        for (int i : revInt)
+        {
+            sum += i;
+        }
+        System.out.println(sum);
+
+        //if()
+
         Boolean isValid = false;
         return isValid;
     }
@@ -39,7 +62,7 @@ class CardValidator
     public static void main (String[] args)
     {
         CardValidator myValidator = new CardValidator();
-        String cardNum = "4024007140216309";
+        String cardNum = "4556737586899855";
         myValidator.validateCard(cardNum);
         if ( myValidator.validateCard(cardNum) == true)
         {
