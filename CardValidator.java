@@ -7,15 +7,15 @@ import java.util.Arrays;
 class CardValidator
 {
     public Boolean validateCcNum(String cardNum)
-    {       
-        int nDigits = cardNum.length();   
-        
+    {
+        int nDigits = cardNum.length();
+
         int sum = 0;
         Boolean isSecond = false;
         for (int i = nDigits-1; i>= 0; i--)
         {
             int digit = cardNum.charAt(i) - '0';
-            
+
             if (isSecond == true)
             {
                 digit = digit*2;
@@ -24,7 +24,7 @@ class CardValidator
 
                 isSecond = !isSecond;
             }
-        }       
+        }
         return (sum % 10 == 0);
     }
 
@@ -37,7 +37,7 @@ class CardValidator
         {
             System.out.println("Card Number: " + cardNum + " is a VALID credit card number.");
         }
-        else 
+        else
         {
             System.out.println("Card Number: " + cardNum + " is an INVALID credit card number.");
         }
