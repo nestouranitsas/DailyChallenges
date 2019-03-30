@@ -24,7 +24,7 @@ public class WeatherMan
     public static void main (String[] args)
 {
     WeatherMan wm = new WeatherMan();
-    wm.getCoordinates();
+    wm.getCoordinates(11206, "New York");
     wm.getWeather();
     wm.reportWeather();
 }
