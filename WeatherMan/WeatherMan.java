@@ -2,12 +2,60 @@
 /*This program takes the user's zip code and gets
 local weather information using an the dark sky API*/
 
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
+import java.net.UnknownHostException;
+
+import com.sun.net.ssl.HttpsURLConnection;
+
 public class WeatherMan
 {
-    //gets GPS coordinates using google maps API
-    public void getCoordinates(int zipCode, String state)
+    //gets MAC address to input into google geolocation API
+    public String getMacAddress()
     {
+    String macAddress = "";
+    
+    //get MAC address to input in Google Geolocation API note: separators must be ":" (colon).
+    InetAddress ip;
+    try
+    {		
+		ip = InetAddress.getLocalHost();
+		
+		NetworkInterface network = NetworkInterface.getByInetAddress(ip);
+			
+		byte[] mac = network.getHardwareAddress();
+			
+        //constructs MAC Address string
+        StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < mac.length; i++) {
+			sb.append(String.format("%02X%s", mac[i], (i < mac.length - 1) ? ":" : ""));		
+		}
+        macAddress = sb.toString();
+    }	
 
+    catch (UnknownHostException e)
+    {
+        e.printStackTrace();
+        return macAddress;
+    }
+
+    catch (SocketException e)
+    {
+        e.printStackTrace();
+        return macAddress;
+    }
+    return macAddress;
+    }
+
+    //Gets location via Google GeoLocaiton API
+    public void getLocation()
+    {
+        URL url = new URL ("https://www.googleapis.com/geolocation/v1/geolocate?key=");
+        HttpsURLConnection con = (HttpsURLConnection) url.openConnection();
+        con.setRequestMethod("GET");
+
+        Map<String, String> parameters = new Hashmap<>();
     }
 
     //gets weather conditions from GPS coordinates using Dark Sky API
@@ -21,11 +69,11 @@ public class WeatherMan
     {
 
     }
+
     public static void main (String[] args)
-{
-    WeatherMan wm = new WeatherMan();
-    wm.getCoordinates(11206, "New York");
-    wm.getWeather();
-    wm.reportWeather();
-}
+    {
+        WeatherMan wm = new WeatherMan();
+        wm.getMacAddress();
+
+    }
 }
